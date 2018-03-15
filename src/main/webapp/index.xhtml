@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+    <title>Login Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+
+        #loginForm{
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            border: 1px solid #e5e5e5;
+            box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+            /*opacity: 0.5;*/
+            border-radius: 5px;
+            top: 50%;
+            transform: translateY(100%);
+        }
+
+        #loginContent{
+            text-align: right;
+            opacity: 1;
+        }
+
+    </style>
+</h:head>
+
+<h:form>
+    <h:body>
+        <h:form id="formID" prependId="false">
+        <div id="loginForm">
+            <p:messages id="msg" autoUpdate="true" closable="true" />
+            <p:panelGrid >
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="UserName:"/>
+                    </p:column>
+                    <p:column>
+                        <p:inputText value="#{usersManagedBean.username}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Password:"/>
+                    </p:column>
+                    <p:column>
+                        <p:password  value="#{usersManagedBean.password}"/>
+                    </p:column>
+                </p:row>
+              <p:row>
+                  <p:column>
+                      <p:commandButton
+                              styleClass="textButton"
+                              update="formID"
+                              action="#{usersManagedBean.login}"
+                              value="Login" />
+                  </p:column>
+                  <p:column>
+                      <p:commandButton
+                              styleClass="textButton"
+                              process="@this"
+                              update=":signupId"
+                              action="#{usersManagedBean.signup}"
+                              oncomplete="PF('signupWidget').show()"
+                              value="Signup" />
+                  </p:column>
+              </p:row>
+            </p:panelGrid>
+        </div>
+        </h:form>
+    </h:body>
+</h:form>
+
+<h:form id="signupId" prependId="false">
+    <p:dialog widgetVar="signupWidget" id="signupDialog" header="SignUp">
+        <p:panelGrid >
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="First Name:"/>
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{usersManagedBean.personnel.firstName}"/>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="Last Name:"/>
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{usersManagedBean.personnel.lastName}"/>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="Email:"/>
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{usersManagedBean.personnel.email}"/>
+                </p:column>
+            </p:row>
+
+
+         <p:row>
+             <p:column>
+                 <p:commandButton
+                         actionListener="#{usersManagedBean.save}"
+                         oncomplete="PF('signupWidget').hide()"
+                         value="Save" />
+             </p:column>
+             <p:column>
+
+             </p:column>
+         </p:row>
+        </p:panelGrid>
+    </p:dialog>
+</h:form>
+
+
+</html>
