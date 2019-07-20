@@ -12,6 +12,7 @@ import java.util.Objects;
         @NamedQuery(name = "findUserByUserName",query = "select user from Users user where user.username =:username and user.password=:password"),
         @NamedQuery(name = "findPersonnelByUserName",query = "select user.personnel from Users user where user.username =:username")
 })
+
 public class Users  implements Serializable{
 
     private Long id;
